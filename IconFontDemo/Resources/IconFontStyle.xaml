@@ -4,7 +4,7 @@
     xmlns:iconFontWpfs="clr-namespace:IconFontDemo.IconFontWpfs"
     xmlns:converters1="clr-namespace:IconFontWpf.Converters;assembly=IconFontWpf">
     <Style TargetType="{x:Type iconFontWpfs:IconFontWpf}">
-        <Setter Property="FontFamily" Value="pack://application:,,,/IconFontDemo;component/Resources/#iconfont"/>
+        <Setter Property="FontFamily" Value="pack://application:,,,/IconFontDemo;component/Resources/#iconfont" />
         <Setter Property="FrameworkElement.Height" Value="16" />
         <Setter Property="FrameworkElement.Width" Value="16" />
         <Setter Property="Control.Padding" Value="0" />
@@ -26,6 +26,8 @@
                               Margin="{TemplateBinding Control.BorderThickness}">
                             <UIElement.RenderTransform>
                                 <TransformGroup>
+                                    <!--ICON FONT的特殊缩放系数-->
+                                    <ScaleTransform ScaleX="1.081081081081081" ScaleY="1.081081081081081" />
                                     <ScaleTransform x:Name="FlipTransform"
                                                     ScaleX="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Flip, Mode=OneWay, Converter={converters1:FlipToScaleXValueConverter}}"
                                                     ScaleY="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Flip, Mode=OneWay, Converter={converters1:FlipToScaleYValueConverter}}" />
