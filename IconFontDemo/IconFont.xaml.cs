@@ -34,7 +34,7 @@ namespace IconFontDemo
                 Container.Children.Add(new IconFontWpfs.IconFontWpf
                 {
                     Kind = IconFontKind.Gear,
-                    Foreground = Brushes.Yellow,
+                    Foreground = Brushes.Red,
                     Width = 100,
                     Height = 100,
                     HorizontalAlignment = HorizontalAlignment.Center,

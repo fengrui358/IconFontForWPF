@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/CustomerPackIconStyle.xaml" />
                 <ResourceDictionary Source="Resources/IconFontStyle.xaml" />
+                <ResourceDictionary Source="Resources/ButtonStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

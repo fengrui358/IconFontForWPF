@@ -20,8 +20,9 @@
             <Button Width="100" Height="30" Content="PathImages"/>
             <Button Width="100" Height="30" Content="PackIconMaterials"/>
             <Button Width="100" Height="30" Content="Png"/>
-            <Button Width="100" Height="30" Content="Font"/>
             <Button Width="100" Height="30" Content="IconFont"/>
+            <!--<Button Width="100" Height="30" Content="Font"/>-->
+            <Button Width="100" Height="30" Content="IconFontButton"/>
         </UniformGrid>
     </Grid>
 </Window>

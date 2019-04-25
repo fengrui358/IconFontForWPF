@@ -41,6 +41,9 @@ namespace IconFontDemo
                 case "ICONFONT":
                     new IconFont(Count) { Owner = this }.ShowDialog();
                     break;
+                case "ICONFONTBUTTON":
+                    new IconFontButton(Count) { Owner = this }.ShowDialog();
+                    break;
             }
         }
     }

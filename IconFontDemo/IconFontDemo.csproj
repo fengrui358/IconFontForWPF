@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IconFontButton.xaml.cs">
+      <DependentUpon>IconFontButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IconFont.xaml.cs">
       <DependentUpon>IconFont.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,10 @@
     <Compile Include="SvgImage\Text.cs" />
     <Compile Include="SvgImage\TextRender.cs" />
     <Compile Include="SvgImage\TextStyle.cs" />
+    <Page Include="IconFontButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="IconFont.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,6 +137,10 @@
     <Page Include="PngImages.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\CustomerPackIconStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
