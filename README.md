@@ -1,0 +1,2 @@
+# IconFontForWPF
+针对IconFont的文字图片控件以及搭配IconFont网站工作的文字强类型转换工具
