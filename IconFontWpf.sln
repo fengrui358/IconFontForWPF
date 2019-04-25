@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconFontWpf", "IconFontWpf\IconFontWpf.csproj", "{A7C37CF1-A7B6-43B0-A1C0-93835863CAF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconFontDemo", "IconFontDemo\IconFontDemo.csproj", "{8815AFA8-18A7-4BA1-B86F-A3C1BAA474FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconFontTool", "IconFontTool\IconFontTool.csproj", "{64CE2F11-3F66-4C04-8877-2AA89D4680BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7C37CF1-A7B6-43B0-A1C0-93835863CAF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7C37CF1-A7B6-43B0-A1C0-93835863CAF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7C37CF1-A7B6-43B0-A1C0-93835863CAF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7C37CF1-A7B6-43B0-A1C0-93835863CAF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8815AFA8-18A7-4BA1-B86F-A3C1BAA474FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8815AFA8-18A7-4BA1-B86F-A3C1BAA474FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8815AFA8-18A7-4BA1-B86F-A3C1BAA474FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8815AFA8-18A7-4BA1-B86F-A3C1BAA474FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64CE2F11-3F66-4C04-8877-2AA89D4680BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64CE2F11-3F66-4C04-8877-2AA89D4680BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64CE2F11-3F66-4C04-8877-2AA89D4680BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64CE2F11-3F66-4C04-8877-2AA89D4680BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02D3A617-1C12-49EA-8A95-17F0EB65CB86}
+	EndGlobalSection
+EndGlobal
