@@ -19,7 +19,7 @@
             <iconFontWpfs:IconFontWpf Kind="Gear"/>
         </Button>
         <Button x:Name="LargerButton" Grid.Row="1" Width="200" Height="200">
-            <iconFontWpfs:IconFontWpf Kind="Gear"/>
+            <iconFontWpfs:IconFontWpf Kind="Gear" Width="160" Height="160"/>
         </Button>
         <Button x:Name="DisabledButton" Grid.Row="2" IsEnabled="False">
             <iconFontWpfs:IconFontWpf Kind="Gear"/>

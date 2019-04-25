@@ -8,6 +8,6 @@ namespace IconFontDemo.IconFontWpfs
         None,
 
         [Description("一个齿轮")]
-        Gear,
+        Gear
     }
 }
