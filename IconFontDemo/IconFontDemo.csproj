@@ -181,7 +181,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\iconfont.ttf" />
+    <None Include="Resources\Font\IconFont.bat" />
+    <Resource Include="Resources\Font\iconfont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -199,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\timer.png" />
+    <Resource Include="Resources\Font\IconFontMapping.txt" />
     <Content Include="Resources\timer.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

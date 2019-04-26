@@ -14,7 +14,7 @@
         <Grid x:Name="Container" Grid.Row="1">
             <Grid.Resources>
                 <Style TargetType="TextBlock">
-                    <Setter Property="FontFamily" Value="pack://application:,,,/IconFontDemo;component/Resources/#iconfont"/>
+                    <Setter Property="FontFamily" Value="pack://application:,,,/IconFontDemo;component/Resources/Font/#iconfont"/>
                 </Style>
             </Grid.Resources>
             <!--<TextBlock x:Name="T" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" FontSize="30" FontFamily="pack://application:,,,/WpfLabs;component/ImagePerformanceDemo/Resources/#iconfont" Text="&#xe740;"/>-->    
