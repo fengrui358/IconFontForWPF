@@ -1,0 +1,1 @@
+..\..\Tools\IconFontTool.exe -factoryPath "..\..\IconFontDemo\IconFontWpfs\IconFontDataFactory.cs" -kindPath "..\..\IconFontDemo\IconFontWpfs\IconFontKind.cs" -iconFilePath "..\..\IconFontDemo\Resources\iconfont.ttf" -mappingFilePath "IconFontMapping.txt" -factoryNameSpace "IconFontDemo.IconFontWpfs" -kindNameSpace "IconFontDemo.IconFontWpfs"

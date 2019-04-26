@@ -49,13 +49,11 @@ namespace IconFontTool
 
                 if (argsList.Contains("-factoryNameSpace"))
                 {
-
                     _factoryNameSpace = argsList[argsList.IndexOf("-factoryNameSpace") + 1];
                 }
 
                 if (argsList.Contains("-kindNameSpace"))
                 {
-
                     _kindNameSpace = argsList[argsList.IndexOf("-kindNameSpace") + 1];
                 }
 
@@ -95,7 +93,7 @@ namespace IconFontTool
                 WriteKindFile(iconFontContents);
 
                 //Copy字体文件
-                File.Copy(zipDirectory.TTFFilePath, _iconFilePath);
+                File.Copy(zipDirectory.TTFFilePath, _iconFilePath, true);
 
                 //删除拷贝过来的Zip文件
                 File.Delete(zip.FullName);
@@ -108,7 +106,7 @@ namespace IconFontTool
 
             if (string.IsNullOrEmpty(filePath))
             {
-                if (defaultFileName == null)
+                if (string.IsNullOrEmpty(defaultFileName))
                 {
                     result = Directory.GetCurrentDirectory();
                 }
@@ -122,6 +120,10 @@ namespace IconFontTool
                 if (filePath.StartsWith("."))
                 {
                     result = Path.Combine(Directory.GetCurrentDirectory(), filePath);
+                }
+                else
+                {
+                    result = filePath;
                 }
 
                 if (!Directory.Exists(Path.GetDirectoryName(result)))
@@ -142,7 +144,8 @@ namespace IconFontTool
 
         private static DirectoryInfo CopyZipFile(string sourceFilePath)
         {
-            var targetFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName(), Path.GetFileName(sourceFilePath));
+            var targetFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName(),
+                Path.GetFileName(sourceFilePath));
             var targetDirectory = Path.GetDirectoryName(targetFileName);
 
             if (!Directory.Exists(targetDirectory))
