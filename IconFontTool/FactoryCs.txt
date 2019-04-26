@@ -1,0 +1,19 @@
+﻿using System.Collections.Generic;
+
+namespace {NameSpace}
+{
+    public static class {FactoryClassName}
+    {
+        public static IDictionary<{KindType}, string> Create()
+        {
+            return new Dictionary<{KindType}, string>()
+            {
+                {
+                    {KindType}.None,
+                    ""
+                },
+{Content}
+            };
+        }
+    }
+}

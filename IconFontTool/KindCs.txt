@@ -1,0 +1,15 @@
+﻿using System.ComponentModel;
+
+namespace {0}
+{
+    public enum {1}
+    {
+        /// <summary>
+        /// Empty placeholder
+        /// </summary>
+        [Description("Empty placeholder")]
+        None,
+
+		{2}
+    }
+}

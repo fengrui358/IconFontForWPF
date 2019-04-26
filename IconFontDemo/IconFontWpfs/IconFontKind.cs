@@ -4,10 +4,18 @@ namespace IconFontDemo.IconFontWpfs
 {
     public enum IconFontKind
     {
+        /// <summary>
+        /// Empty placeholder
+        /// </summary>
         [Description("Empty placeholder")]
         None,
 
-        [Description("一个齿轮")]
+        /// <summary>
+        /// 中文描述
+        /// selectfiles
+        /// Class/selectfiles
+        /// </summary>
+        [Description("中文描述 selectfiles/selectfiles")]
         Gear
     }
 }
