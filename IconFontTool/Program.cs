@@ -94,6 +94,9 @@ namespace IconFontTool
                 WriteFactoryFile(iconFontContents);
                 WriteKindFile(iconFontContents);
 
+                //Copy字体文件
+                File.Copy(zipDirectory.TTFFilePath, _iconFilePath);
+
                 //删除拷贝过来的Zip文件
                 File.Delete(zip.FullName);
             }
