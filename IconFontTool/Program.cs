@@ -124,7 +124,7 @@ namespace IconFontTool
             }
             else
             {
-                if (filePath.StartsWith("."))
+                if (!Path.IsPathRooted(filePath))
                 {
                     result = Path.Combine(Directory.GetCurrentDirectory(), filePath);
                 }
@@ -266,7 +266,7 @@ namespace IconFontTool
                         sb.AppendLine($"{iconFontContent.DecriptionAndValue}");
                     }
 
-                    sb.Remove(sb.Length - 6, 6);
+                    sb.Remove(sb.Length - 5, 5);
 
                     content = content.Replace("{NameSpace}", _factoryNameSpace);
                     content = content.Replace("{KindType}", _kindName);
