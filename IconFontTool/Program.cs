@@ -21,6 +21,8 @@ namespace IconFontTool
         private static string _factoryName;
         private static string _kindName;
 
+        public static string IconPrefix = string.Empty;
+
         static void Main(string[] args)
         {
             if (args != null && args.Any())
@@ -55,6 +57,11 @@ namespace IconFontTool
                 if (argsList.Contains("-kindNameSpace"))
                 {
                     _kindNameSpace = argsList[argsList.IndexOf("-kindNameSpace") + 1];
+                }
+
+                if (argsList.Contains("-iconPrefix"))
+                {
+                    IconPrefix = argsList[argsList.IndexOf("-iconPrefix") + 1];
                 }
 
                 _factoryPath = GetFilePath(_factoryPath, "IconFontFactory.cs");
@@ -169,14 +176,27 @@ namespace IconFontTool
         {
             var contentLines = File.ReadAllLines(mappingFilePath, Encoding.UTF8);
             var dictionary = new Dictionary<string, string>();
+            var mappingHash = new HashSet<string>();
 
             foreach (var contentLine in contentLines)
             {
                 var keyValue = contentLine.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
                 if (keyValue.Length == 2)
                 {
+                    mappingHash.Add(keyValue[0]);
                     dictionary.Add(keyValue[0], keyValue[1]);
                 }
+            }
+
+            var allHash = new HashSet<string>();
+            foreach (var iconFontContent in iconFontContents)
+            {
+                allHash.Add(iconFontContent.ClassName);
+            }
+
+            if (!mappingHash.IsSubsetOf(allHash))
+            {
+                throw new Exception("映射文件中发现不能匹配的项");
             }
 
             foreach (var iconFontContent in iconFontContents)

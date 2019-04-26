@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -21,7 +22,6 @@ namespace IconFontTool
         public string TTFFilePath => Path.Combine(_zipDirectory.FullName, "iconfont.ttf");
 
 
-
         public ZipDirectory(DirectoryInfo directory)
         {
             _zipDirectory = directory;
@@ -41,10 +41,14 @@ namespace IconFontTool
             var divs = div.SelectNodes(@".//div[@class='name']");
 
             var count = spans.Count;
+
             for (var i = 0; i < spans.Count; i++)
             {
                 var iconFontContent = new IconFontContent();
-                iconFontContent.ClassName = spans[i].Attributes.First().Value.Substring("icon iconfont icon".Length);
+
+
+                iconFontContent.ClassName =
+                    spans[i].Attributes.First().Value.Substring($"icon iconfont {Program.IconPrefix}".Length);
                 iconFontContent.DisplayName = divs[i].InnerHtml.Trim();
 
                 result.Add(iconFontContent);
@@ -56,7 +60,7 @@ namespace IconFontTool
 
             foreach (var iconFontContent in result)
             {
-                var key = $".icon{iconFontContent.ClassName}:before {{";
+                var key = $".{Program.IconPrefix}{iconFontContent.ClassName}:before {{";
 
                 matchOffset = fontCodeDoc.IndexOf(key, matchOffset, StringComparison.Ordinal);
                 var start = fontCodeDoc.IndexOf('"', matchOffset);
