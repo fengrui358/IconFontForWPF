@@ -30,7 +30,7 @@ namespace IconFontTool
             }
         }
 
-        public string Decription
+        public string DecriptionAndValue
         {
             get
             {
@@ -45,24 +45,25 @@ namespace IconFontTool
                 sb.AppendLine($"        /// Class/{ClassName}");
                 sb.AppendLine("        /// </summary>");
 
-                var description = "        [Description(\"{0}{1}\")]";
+                var description = new StringBuilder("        [Description(\"");
                 if (!string.IsNullOrEmpty(CustomDescription))
                 {
-                    string.Format(description, $"{CustomDescription} ");
-                }
-                else
-                {
-                    string.Format(description, string.Empty);
+                    description.Append($"{CustomDescription} ");
                 }
 
                 if (DisplayName == ClassName)
                 {
-                    //sb.AppendLine($"        [Description(\"{!string.IsNullOrEmpty(CustomDescription)?}selectfiles / selectfiles\")]");
+                    description.Append($"{DisplayName}");
                 }
                 else
                 {
-
+                    description.Append($"{DisplayName}/{ClassName}");
                 }
+
+                description.Append("\")]");
+                sb.AppendLine(description.ToString());
+
+                sb.AppendLine($"        {RealName},");
 
                 return sb.ToString();
             }

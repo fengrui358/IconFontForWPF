@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace {0}
+namespace {NameSpace}
 {
-    public enum {1}
+    public enum {KindType}
     {
         /// <summary>
         /// Empty placeholder
@@ -10,6 +10,6 @@ namespace {0}
         [Description("Empty placeholder")]
         None,
 
-		{2}
+{Content}
     }
 }

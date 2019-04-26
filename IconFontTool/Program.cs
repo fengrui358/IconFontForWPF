@@ -95,7 +95,7 @@ namespace IconFontTool
                 WriteKindFile(iconFontContents);
 
                 //删除拷贝过来的Zip文件
-                //File.Delete(zip.FullName);
+                File.Delete(zip.FullName);
             }
         }
 
@@ -208,7 +208,7 @@ namespace IconFontTool
                     foreach (var iconFontContent in iconFontContents)
                     {
                         sb.AppendLine("                {");
-                        sb.AppendLine($"                    {_kindName}.{iconFontContent.RealName}");
+                        sb.AppendLine($"                    {_kindName}.{iconFontContent.RealName},");
                         sb.AppendLine($"                    \"{iconFontContent.FontCode}\"");
                         sb.AppendLine("                },");
                     }
@@ -219,14 +219,36 @@ namespace IconFontTool
                     content = content.Replace("{FactoryClassName}", _factoryName);
                     content = content.Replace("{KindType}", _kindName);
                     content = content.Replace("{Content}", sb.ToString());
+
+                    File.WriteAllText(_factoryPath, content, Encoding.UTF8);
                 }
             }
-
         }
 
         private static void WriteKindFile(List<IconFontContent> iconFontContents)
         {
+            using (var contentStream =
+                Assembly.GetEntryAssembly().GetManifestResourceStream("IconFontTool.KindCs.txt"))
+            {
+                using (var streamReader = new StreamReader(contentStream))
+                {
+                    var content = streamReader.ReadToEnd();
+                    var sb = new StringBuilder();
 
+                    foreach (var iconFontContent in iconFontContents)
+                    {
+                        sb.AppendLine($"{iconFontContent.DecriptionAndValue}");
+                    }
+
+                    sb.Remove(sb.Length - 6, 6);
+
+                    content = content.Replace("{NameSpace}", _factoryNameSpace);
+                    content = content.Replace("{KindType}", _kindName);
+                    content = content.Replace("{Content}", sb.ToString());
+
+                    File.WriteAllText(_kindPath, content, Encoding.UTF8);
+                }
+            }
         }
     }
 }
