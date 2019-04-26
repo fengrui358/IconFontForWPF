@@ -26,6 +26,9 @@ namespace IconFontDemo
                 case "PNG":
                     new PngImages(Count) { Owner = this }.ShowDialog();
                     break;
+                case "PATH":
+                    new Paths(Count) { Owner = this }.ShowDialog();
+                    break;
                 case "SVG":
                     new SvgImages(Count) { Owner = this }.ShowDialog();
                     break;

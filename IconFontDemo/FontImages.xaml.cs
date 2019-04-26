@@ -28,23 +28,25 @@ namespace IconFontDemo
         {
             for (int i = 0; i < count; i++)
             {
-                var viewbox = new Viewbox
-                {
-                    Width = 100,
-                    Height = 100,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center
-                };
+                //var viewbox = new Viewbox
+                //{
+                //    Width = 100,
+                //    Height = 100,
+                //    HorizontalAlignment = HorizontalAlignment.Center,
+                //    VerticalAlignment = VerticalAlignment.Center
+                //};
 
                 var txtIcon = new TextBlock
                 {
                     Text = "\u3433",
                     Foreground = Brushes.Red,
-                    FontSize = 1
+                    FontSize = 55,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
                 };
-                viewbox.Child = txtIcon;
+                //viewbox.Child = txtIcon;
 
-                Container.Children.Add(viewbox);
+                Container.Children.Add(txtIcon);
             }
         }
 
