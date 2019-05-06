@@ -17,58 +17,58 @@ namespace IconFontWpf
         /// <summary>Identifies the Flip dependency property.</summary>
         public static readonly DependencyProperty FlipProperty = DependencyProperty.Register(nameof(Flip),
             typeof(IconFontFlipOrientation), typeof(IconFontControl<TKind>),
-            new PropertyMetadata((object) IconFontFlipOrientation.Normal));
+            new PropertyMetadata(IconFontFlipOrientation.Normal));
 
         /// <summary>Identifies the Rotation dependency property.</summary>
         public static readonly DependencyProperty RotationProperty = DependencyProperty.Register(nameof(Rotation),
             typeof(double), typeof(IconFontControl<TKind>),
-            new PropertyMetadata((object) 0.0, (PropertyChangedCallback) null,
-                new CoerceValueCallback(IconFontControl<TKind>.RotationPropertyCoerceValueCallback)));
+            new PropertyMetadata(0.0, null, RotationPropertyCoerceValueCallback));
 
         /// <summary>Identifies the Spin dependency property.</summary>
         public static readonly DependencyProperty SpinProperty = DependencyProperty.Register(nameof(Spin), typeof(bool),
             typeof(IconFontControl<TKind>),
-            new PropertyMetadata((object) false,
-                new PropertyChangedCallback(IconFontControl<TKind>.SpinPropertyChangedCallback),
-                new CoerceValueCallback(IconFontControl<TKind>.SpinPropertyCoerceValueCallback)));
+            new PropertyMetadata(false, SpinPropertyChangedCallback, SpinPropertyCoerceValueCallback));
 
         private static readonly string SpinnerStoryBoardName =
-            $"{(object) typeof(IconFontControl<TKind>).Name}SpinnerStoryBoard";
+            $"{typeof(IconFontControl<TKind>).Name as object}SpinnerStoryBoard";
 
         /// <summary>Identifies the SpinDuration dependency property.</summary>
         public static readonly DependencyProperty SpinDurationProperty = DependencyProperty.Register(
             nameof(SpinDuration), typeof(double), typeof(IconFontControl<TKind>),
-            new PropertyMetadata((object) 1.0,
-                new PropertyChangedCallback(IconFontControl<TKind>.SpinDurationPropertyChangedCallback),
-                new CoerceValueCallback(IconFontControl<TKind>.SpinDurationCoerceValueCallback)));
+            new PropertyMetadata(1.0, SpinDurationPropertyChangedCallback, SpinDurationCoerceValueCallback));
 
         /// <summary>
         /// Identifies the SpinEasingFunction dependency property.
         /// </summary>
         public static readonly DependencyProperty SpinEasingFunctionProperty = DependencyProperty.Register(
             nameof(SpinEasingFunction), typeof(IEasingFunction), typeof(IconFontControl<TKind>),
-            new PropertyMetadata((object) null,
-                new PropertyChangedCallback(IconFontControl<TKind>.SpinEasingFunctionPropertyChangedCallback)));
+            new PropertyMetadata(null, SpinEasingFunctionPropertyChangedCallback));
 
         /// <summary>Identifies the SpinAutoReverse dependency property.</summary>
         public static readonly DependencyProperty SpinAutoReverseProperty = DependencyProperty.Register(
             nameof(SpinAutoReverse), typeof(bool), typeof(IconFontControl<TKind>),
-            new PropertyMetadata((object) false,
-                new PropertyChangedCallback(IconFontControl<TKind>.SpinAutoReversePropertyChangedCallback)));
+            new PropertyMetadata(false, SpinAutoReversePropertyChangedCallback));
+
+        public static readonly DependencyProperty ScaleXProperty = DependencyProperty.Register(
+            "ScaleX", typeof(double), typeof(IconFontControl<TKind>), new PropertyMetadata(1d));
+
+
+        public static readonly DependencyProperty ScaleYProperty = DependencyProperty.Register(
+            "ScaleY", typeof(double), typeof(IconFontControl<TKind>), new PropertyMetadata(default(double)));
 
         private FrameworkElement _innerGrid;
 
         static IconFontControl()
         {
-            UIElement.OpacityProperty.OverrideMetadata(typeof(IconFontControl<TKind>),
-                (PropertyMetadata) new UIPropertyMetadata((object) 1.0,
-                    (PropertyChangedCallback) ((d, e) => d.CoerceValue(IconFontControl<TKind>.SpinProperty))));
-            UIElement.VisibilityProperty.OverrideMetadata(typeof(IconFontControl<TKind>),
-                (PropertyMetadata) new UIPropertyMetadata((object) Visibility.Visible,
-                    (PropertyChangedCallback) ((d, e) => d.CoerceValue(IconFontControl<TKind>.SpinProperty))));
+            OpacityProperty.OverrideMetadata(typeof(IconFontControl<TKind>),
+                new UIPropertyMetadata(1.0,
+                    (d, e) => d.CoerceValue(SpinProperty)));
+            VisibilityProperty.OverrideMetadata(typeof(IconFontControl<TKind>),
+                new UIPropertyMetadata(Visibility.Visible,
+                    (d, e) => d.CoerceValue(SpinProperty)));
         }
 
-        public IconFontControl(Func<IDictionary<TKind, string>> dataIndexFactory)
+        protected IconFontControl(Func<IDictionary<TKind, string>> dataIndexFactory)
             : base(dataIndexFactory)
         {
         }
@@ -76,18 +76,18 @@ namespace IconFontWpf
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.CoerceValue(IconFontControl<TKind>.SpinProperty);
-            if (!this.Spin)
+            CoerceValue(SpinProperty);
+            if (!Spin)
                 return;
-            this.StopSpinAnimation();
-            this.BeginSpinAnimation();
+            StopSpinAnimation();
+            BeginSpinAnimation();
         }
 
         /// <summary>Gets or sets the flip orientation.</summary>
         public IconFontFlipOrientation Flip
         {
-            get { return (IconFontFlipOrientation) this.GetValue(IconFontControl<TKind>.FlipProperty); }
-            set { this.SetValue(IconFontControl<TKind>.FlipProperty, (object) value); }
+            get => (IconFontFlipOrientation) GetValue(FlipProperty);
+            set => SetValue(FlipProperty, value);
         }
 
         private static object RotationPropertyCoerceValueCallback(
@@ -96,28 +96,28 @@ namespace IconFontWpf
         {
             double num = (double) value;
             if (num < 0.0)
-                return (object) 0.0;
+                return 0.0;
             if (num <= 360.0)
                 return value;
-            return (object) 360.0;
+            return 360.0;
         }
 
         /// <summary>Gets or sets the rotation (angle).</summary>
         /// <value>The rotation.</value>
         public double Rotation
         {
-            get { return (double) this.GetValue(IconFontControl<TKind>.RotationProperty); }
-            set { this.SetValue(IconFontControl<TKind>.RotationProperty, (object) value); }
+            get => (double) GetValue(RotationProperty);
+            set => SetValue(RotationProperty, value);
         }
 
         private static object SpinPropertyCoerceValueCallback(
             DependencyObject dependencyObject,
             object value)
         {
-            IconFontControl<TKind> IconFontControl = dependencyObject as IconFontControl<TKind>;
-            if (IconFontControl != null && (!IconFontControl.IsVisible || IconFontControl.Opacity <= 0.0 ||
-                                            IconFontControl.SpinDuration <= 0.0))
-                return (object) false;
+            if (dependencyObject is IconFontControl<TKind> iconFontControl &&
+                (!iconFontControl.IsVisible || iconFontControl.Opacity <= 0.0 ||
+                 iconFontControl.SpinDuration <= 0.0))
+                return false;
             return value;
         }
 
@@ -125,75 +125,64 @@ namespace IconFontWpf
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs e)
         {
-            IconFontControl<TKind> IconFontControl = dependencyObject as IconFontControl<TKind>;
-            if (IconFontControl == null || e.OldValue == e.NewValue || !(e.NewValue is bool))
+            if (!(dependencyObject is IconFontControl<TKind> iconFontControl) || e.OldValue == e.NewValue ||
+                !(e.NewValue is bool))
                 return;
             if ((bool) e.NewValue)
-                IconFontControl.BeginSpinAnimation();
+                iconFontControl.BeginSpinAnimation();
             else
-                IconFontControl.StopSpinAnimation();
+                iconFontControl.StopSpinAnimation();
         }
 
-        private FrameworkElement InnerGrid
-        {
-            get
-            {
-                return this._innerGrid ??
-                       (this._innerGrid = this.GetTemplateChild("PART_InnerGrid") as FrameworkElement);
-            }
-        }
+        private FrameworkElement InnerGrid =>
+            _innerGrid ??
+            (_innerGrid = GetTemplateChild("PART_InnerGrid") as FrameworkElement);
 
         private void BeginSpinAnimation()
         {
-            FrameworkElement innerGrid = this.InnerGrid;
+            FrameworkElement innerGrid = InnerGrid;
             if (innerGrid == null)
                 return;
             TransformGroup transformGroup = innerGrid.RenderTransform as TransformGroup ?? new TransformGroup();
             RotateTransform rotateTransform =
-                transformGroup.Children.OfType<RotateTransform>().LastOrDefault<RotateTransform>();
+                transformGroup.Children.OfType<RotateTransform>().LastOrDefault();
             if (rotateTransform != null)
             {
                 rotateTransform.Angle = 0.0;
             }
             else
             {
-                transformGroup.Children.Add((Transform) new RotateTransform());
-                innerGrid.RenderTransform = (Transform) transformGroup;
+                transformGroup.Children.Add(new RotateTransform());
+                innerGrid.RenderTransform = transformGroup;
             }
 
             Storyboard storyboard = new Storyboard();
-            DoubleAnimation doubleAnimation1 = new DoubleAnimation();
-            doubleAnimation1.From = new double?(0.0);
-            doubleAnimation1.To = new double?(360.0);
-            doubleAnimation1.AutoReverse = this.SpinAutoReverse;
-            doubleAnimation1.EasingFunction = this.SpinEasingFunction;
-            doubleAnimation1.RepeatBehavior = RepeatBehavior.Forever;
-            doubleAnimation1.Duration = new Duration(TimeSpan.FromSeconds(this.SpinDuration));
+            DoubleAnimation doubleAnimation1 = new DoubleAnimation
+            {
+                From = 0.0,
+                To = 360.0,
+                AutoReverse = SpinAutoReverse,
+                EasingFunction = SpinEasingFunction,
+                RepeatBehavior = RepeatBehavior.Forever,
+                Duration = new Duration(TimeSpan.FromSeconds(SpinDuration))
+            };
             DoubleAnimation doubleAnimation2 = doubleAnimation1;
-            storyboard.Children.Add((Timeline) doubleAnimation2);
-            Storyboard.SetTarget((DependencyObject) doubleAnimation2, (DependencyObject) innerGrid);
-            Storyboard.SetTargetProperty((DependencyObject) doubleAnimation2, new PropertyPath("(0).(1)[2].(2)",
-                new object[3]
-                {
-                    (object) UIElement.RenderTransformProperty,
-                    (object) TransformGroup.ChildrenProperty,
-                    (object) RotateTransform.AngleProperty
-                }));
-            innerGrid.Resources.Add((object) IconFontControl<TKind>.SpinnerStoryBoardName, (object) storyboard);
+            storyboard.Children.Add(doubleAnimation2);
+            Storyboard.SetTarget(doubleAnimation2, innerGrid);
+            Storyboard.SetTargetProperty(doubleAnimation2,
+                new PropertyPath("(0).(1)[2].(2)", RenderTransformProperty as object,
+                    TransformGroup.ChildrenProperty as object, RotateTransform.AngleProperty as object));
+            innerGrid.Resources.Add(SpinnerStoryBoardName, storyboard);
             storyboard.Begin();
         }
 
         private void StopSpinAnimation()
         {
-            FrameworkElement innerGrid = this.InnerGrid;
-            if (innerGrid == null)
-                return;
-            Storyboard resource =
-                innerGrid.Resources[(object) IconFontControl<TKind>.SpinnerStoryBoardName] as Storyboard;
-            if (resource == null)
+            FrameworkElement innerGrid = InnerGrid;
+            if (!(innerGrid?.Resources[SpinnerStoryBoardName] is Storyboard resource))
                 return;
             resource.Stop();
-            innerGrid.Resources.Remove((object) IconFontControl<TKind>.SpinnerStoryBoardName);
+            innerGrid.Resources.Remove(SpinnerStoryBoardName);
         }
 
         /// <summary>
@@ -202,20 +191,19 @@ namespace IconFontWpf
         /// <value><c>true</c> if spin; otherwise, <c>false</c>.</value>
         public bool Spin
         {
-            get { return (bool) this.GetValue(IconFontControl<TKind>.SpinProperty); }
-            set { this.SetValue(IconFontControl<TKind>.SpinProperty, (object) value); }
+            get => (bool) GetValue(SpinProperty);
+            set => SetValue(SpinProperty, value);
         }
 
         private static void SpinDurationPropertyChangedCallback(
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs e)
         {
-            IconFontControl<TKind> IconFontControl = dependencyObject as IconFontControl<TKind>;
-            if (IconFontControl == null || e.OldValue == e.NewValue ||
-                (!IconFontControl.Spin || !(e.NewValue is double)))
+            if (!(dependencyObject is IconFontControl<TKind> iconFontControl) || e.OldValue == e.NewValue ||
+                (!iconFontControl.Spin || !(e.NewValue is double)))
                 return;
-            IconFontControl.StopSpinAnimation();
-            IconFontControl.BeginSpinAnimation();
+            iconFontControl.StopSpinAnimation();
+            iconFontControl.BeginSpinAnimation();
         }
 
         private static object SpinDurationCoerceValueCallback(
@@ -224,7 +212,7 @@ namespace IconFontWpf
         {
             if ((double) value >= 0.0)
                 return value;
-            return (object) 0.0;
+            return 0.0;
         }
 
         /// <summary>
@@ -233,19 +221,19 @@ namespace IconFontWpf
         /// <value>The duration of the spin in seconds.</value>
         public double SpinDuration
         {
-            get { return (double) this.GetValue(IconFontControl<TKind>.SpinDurationProperty); }
-            set { this.SetValue(IconFontControl<TKind>.SpinDurationProperty, (object) value); }
+            get => (double) GetValue(SpinDurationProperty);
+            set => SetValue(SpinDurationProperty, value);
         }
 
         private static void SpinEasingFunctionPropertyChangedCallback(
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs e)
         {
-            IconFontControl<TKind> IconFontControl = dependencyObject as IconFontControl<TKind>;
-            if (IconFontControl == null || e.OldValue == e.NewValue || !IconFontControl.Spin)
+            if (!(dependencyObject is IconFontControl<TKind> iconFontControl) || e.OldValue == e.NewValue ||
+                !iconFontControl.Spin)
                 return;
-            IconFontControl.StopSpinAnimation();
-            IconFontControl.BeginSpinAnimation();
+            iconFontControl.StopSpinAnimation();
+            iconFontControl.BeginSpinAnimation();
         }
 
         /// <summary>
@@ -254,19 +242,19 @@ namespace IconFontWpf
         /// <value>The spin easing function.</value>
         public IEasingFunction SpinEasingFunction
         {
-            get { return (IEasingFunction) this.GetValue(IconFontControl<TKind>.SpinEasingFunctionProperty); }
-            set { this.SetValue(IconFontControl<TKind>.SpinEasingFunctionProperty, (object) value); }
+            get => (IEasingFunction) GetValue(SpinEasingFunctionProperty);
+            set => SetValue(SpinEasingFunctionProperty, value);
         }
 
         private static void SpinAutoReversePropertyChangedCallback(
             DependencyObject dependencyObject,
             DependencyPropertyChangedEventArgs e)
         {
-            IconFontControl<TKind> IconFontControl = dependencyObject as IconFontControl<TKind>;
-            if (IconFontControl == null || e.OldValue == e.NewValue || (!IconFontControl.Spin || !(e.NewValue is bool)))
+            if (!(dependencyObject is IconFontControl<TKind> iconFontControl) || e.OldValue == e.NewValue ||
+                (!iconFontControl.Spin || !(e.NewValue is bool)))
                 return;
-            IconFontControl.StopSpinAnimation();
-            IconFontControl.BeginSpinAnimation();
+            iconFontControl.StopSpinAnimation();
+            iconFontControl.BeginSpinAnimation();
         }
 
         /// <summary>
@@ -275,8 +263,20 @@ namespace IconFontWpf
         /// <value><c>true</c> if [spin automatic reverse]; otherwise, <c>false</c>.</value>
         public bool SpinAutoReverse
         {
-            get { return (bool) this.GetValue(IconFontControl<TKind>.SpinAutoReverseProperty); }
-            set { this.SetValue(IconFontControl<TKind>.SpinAutoReverseProperty, (object) value); }
+            get => (bool) GetValue(SpinAutoReverseProperty);
+            set => SetValue(SpinAutoReverseProperty, value);
+        }
+
+        public double ScaleX
+        {
+            get => (double) GetValue(ScaleXProperty);
+            set => SetValue(ScaleXProperty, value);
+        }
+
+        public double ScaleY
+        {
+            get => (double) GetValue(ScaleYProperty);
+            set => SetValue(ScaleYProperty, value);
         }
     }
 }
