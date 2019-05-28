@@ -6,7 +6,7 @@ namespace {NameSpace}
     {
         public static IDictionary<{KindType}, string> Create()
         {
-            return new Dictionary<{KindType}, string>()
+            return new Dictionary<{KindType}, string>
             {
                 {
                     {KindType}.None,
