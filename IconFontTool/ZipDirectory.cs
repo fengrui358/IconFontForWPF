@@ -40,15 +40,12 @@ namespace IconFontTool
             var spans = div.SelectNodes(@".//span");
             var divs = div.SelectNodes(@".//div[@class='name']");
 
-            var count = spans.Count;
-
             for (var i = 0; i < spans.Count; i++)
             {
                 var iconFontContent = new IconFontContent();
 
-
                 iconFontContent.ClassName =
-                    spans[i].Attributes.First().Value.Substring($"icon iconfont {Program.IconPrefix}".Length);
+                    spans[i].Attributes.First().Value.Substring($"icon {Program.IconPrefix} ".Length);
                 iconFontContent.DisplayName = divs[i].InnerHtml.Trim();
 
                 result.Add(iconFontContent);
@@ -60,7 +57,7 @@ namespace IconFontTool
 
             foreach (var iconFontContent in result)
             {
-                var key = $".{Program.IconPrefix}{iconFontContent.ClassName}:before {{";
+                var key = $".{iconFontContent.ClassName}:before {{";
 
                 matchOffset = fontCodeDoc.IndexOf(key, matchOffset, StringComparison.Ordinal);
                 var start = fontCodeDoc.IndexOf('"', matchOffset);
