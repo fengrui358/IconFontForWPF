@@ -22,6 +22,7 @@ namespace IconFontTool
         private static string _kindName;
 
         public static string IconPrefix = string.Empty;
+        public static string FontFamily = "ic";
 
         static void Main(string[] args)
         {
@@ -62,6 +63,15 @@ namespace IconFontTool
                 if (argsList.Contains("-iconPrefix"))
                 {
                     IconPrefix = argsList[argsList.IndexOf("-iconPrefix") + 1];
+                }
+
+                if (argsList.Contains("-fontFamily"))
+                {
+                    FontFamily = argsList[argsList.IndexOf("-fontFamily") + 1];
+                }
+                else
+                {
+                    throw new ArgumentNullException("-fontFamily", "Must include fontFamily arg.");
                 }
 
                 _factoryPath = GetFilePath(_factoryPath, "IconFontFactory.cs");

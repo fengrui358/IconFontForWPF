@@ -48,7 +48,7 @@ namespace IconFontTool
 
 
                 iconFontContent.ClassName =
-                    spans[i].Attributes.First().Value.Substring($"icon iconfont {Program.IconPrefix}".Length);
+                    spans[i].Attributes.First().Value.Substring($"icon {Program.FontFamily} {Program.IconPrefix}".Length);
                 iconFontContent.DisplayName = divs[i].InnerHtml.Trim();
 
                 result.Add(iconFontContent);
